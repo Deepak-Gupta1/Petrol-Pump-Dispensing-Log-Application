@@ -1,27 +1,56 @@
-# PetrolPumpLog
+# Petrol Pump Dispensing Log Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+## 🚀 Project Overview
+This is a full-stack web application designed to log fuel dispensing details at a petrol pump. It allows authenticated users to add new dispensing records and view a filterable list of all past records.
 
-## Development server
+## 🛠️ Tech Stack
+- **Frontend**: Angular (Standalone Components) with Bootstrap for responsive UI
+- **Backend**: .NET Core Web API
+- **Database**: SQL Server
+- **Authentication**: JWT Token-based authentication
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📸 Features
+### 1. Login Page
+- Simple login form with username and password
+- JWT-based authentication
+- Redirects to listing page on successful login
 
-## Code scaffolding
+### 2. Entry Page
+- Form to create a new dispensing record
+- Fields:
+  - Dispenser No (Dropdown)
+  - Quantity Filled (Liters)
+  - Vehicle Number
+  - Payment Mode (Radio buttons)
+  - Payment Proof (File upload: .jpg, .png, .pdf)
+- Accessible only to authenticated users
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 3. Listing Page
+- Displays all dispensing records in a table
+- Includes filters:
+  - Dispenser No
+  - Payment Mode
+  - Date Range
+- Allows viewing/downloading payment proof
 
-## Build
+## 🧪 Setup Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 🌐 Frontend (Angular)
 
-## Running unit tests
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+1. Run the Angular app:
+   ```bash
+   ng serve
+   ```
+3. Access the app at `http://localhost:4200`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🔐 Authentication Details
+- Default login credentials (for testing):
+  - **Username**: `admin`
+  - **Password**: `admin123`
+- JWT token is stored in `localStorage` and used for API authorization
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
