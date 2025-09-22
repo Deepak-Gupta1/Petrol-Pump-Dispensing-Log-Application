@@ -1,0 +1,9 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Petrol Pump Log</a>
+      <div *ngIf="isLogin">
+        <a href="entry.html" class="btn btn-light btn-sm me-2" [routerLink]="['/dispensingForm']" >Add New Record</a>
+        <button id="logoutBtn" class="btn btn-outline-light btn-sm" (click)="LogOut()">Logout</button>
+      </div>
+    </div>
+  </nav>

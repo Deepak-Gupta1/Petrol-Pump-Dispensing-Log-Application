@@ -1,0 +1,83 @@
+<div class="container mt-4">
+  <h3>Dispensing Records</h3>
+
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <label>Dispenser No</label>
+      <select [(ngModel)]="dispenserFilter" (change)="fetchRecords()" class="form-select">
+        <option value="">All</option>
+        <option *ngFor="let option of dispenserOptions" [value]="option.id">{{ option.name }}</option>
+      </select>
+    </div>
+
+
+    <div class="col-md-3">
+      <label>Payment Mode</label>
+      <select [(ngModel)]="paymentModeFilter" (change)="fetchRecords()" class="form-select">
+        <option value="">All</option>
+        <option *ngFor="let mode of paymentModes" [value]="mode.id">{{ mode.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label>Start Date</label>
+      <input type="date" [(ngModel)]="startDate" (change)="fetchRecords()" class="form-control">
+    </div>
+
+    <div class="col-md-3">
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="endDate" (change)="fetchRecords()" class="form-control">
+    </div>
+  </div>
+
+  <div class="table">
+    <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8 w-100">
+
+ 
+      <ng-container matColumnDef="dispenserNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dispenser No </th>
+        <td mat-cell *matCellDef="let element"> {{ element.dispenserNo }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="quantityFilled">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{ element.quantityFilled }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="vehicleNumber">
+        <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
+        <td mat-cell *matCellDef="let element"> {{ element.vehicleNumber }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="paymentMode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Mode </th>
+        <td mat-cell *matCellDef="let element"> {{ element.paymentMode }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp </th>
+        <td mat-cell *matCellDef="let element"> {{ element.createdDate | date: 'dd/MM/yyyy' }} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="paymentProofUrl">
+        <th mat-header-cell *matHeaderCellDef> Payment Proof </th>
+        <td mat-cell *matCellDef="let element">
+          <a [href]="viewPdf(element.id)" target="_blank">View PDF</a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons class="fixed-paginator">
+    </mat-paginator>
+  </div>
+
+</div>

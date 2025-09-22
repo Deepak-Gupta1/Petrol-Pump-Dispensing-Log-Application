@@ -1,0 +1,53 @@
+<div class="container my-5" style="max-width: 600px;">
+  <h2 class="mb-4">Add New Dispensing Record</h2>
+  <form id="entryForm" (submit)="submitForm()">
+    <div class="mb-3">
+      <label for="dispenserNo" class="form-label">Dispenser No</label>
+
+      <select class="form-select" id="dispenserNo" [(ngModel)]="DispenserDto.dispenserNo" name="dispenserNo" required>
+        <option value="0" selected disabled>Select Dispenser</option>
+        <option *ngFor="let option of dispenserOptions" [value]="option.id">{{ option.name }}</option>
+      </select>
+
+
+    </div>
+    <div class="mb-3">
+      <label for="quantityFilled" class="form-label">Quantity Filled (liters)</label>
+      <input type="number" [(ngModel)]="DispenserDto.quantity" name="quantity" class="form-control" appFuelNumberCheck>
+    </div>
+    <div class="mb-3">
+      <label for="vehicleNumber" class="form-label">Vehicle Number</label>
+      <input type="text" [(ngModel)]="DispenserDto.vehicleNumber" name="vehicleNumber" class="form-control" >
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Payment Mode</label>
+      <div>
+        <div class="form-check form-check-inline">
+          <div *ngFor="let mode of paymentModes">
+            <input class="form-check-input" type="radio" name="paymentMode" id="{{mode.id+mode.name}}"
+              [ngModel]="DispenserDto.paymentMode"  [value]="mode.id" (ngModelChange)="onPaymentModeChange(mode)" />
+            <label class="form-check-label" for="{{mode.name}}">{{ mode.name }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="paymentProof" class="form-label">Payment Proof (jpg, png, pdf)</label>
+      <input type="file" (change)="onFileChange($event)" accept=".jpg,.png,.pdf" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="..." class="rounded me-2" alt="...">
+    <strong class="me-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
